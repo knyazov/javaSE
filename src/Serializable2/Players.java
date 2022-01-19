@@ -6,6 +6,10 @@ public class Players implements Serializable {
         private String nickName;
         private double rating;
 
+    public Players(String nickName, double rating) {
+        this.nickName = nickName;
+        this.rating = rating;
+    }
 
     public String getNickName() {
         return nickName;
