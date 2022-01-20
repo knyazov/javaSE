@@ -8,14 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-//    public static void addPlayer(Players players) {
-//        ArrayList<Players> players1 = new ArrayList<>();
-//        try {
-//            players1.add(players);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static void saveGame(ArrayList players) {
         try {
@@ -61,7 +53,7 @@ public class Main {
             } else if (choice == 2) {
                 System.out.println("CHOOSE GAME: ");
                 System.out.println("YOU CAN ENTER GAME'S INDEX");
-                ArrayList games = readGame();
+                ArrayList<Game> games = readGame();
                 for (int i = 0; i < games.size(); i++) {
                     System.out.println((i) + ")" + games.get(i).toString());
                 }
@@ -72,19 +64,20 @@ public class Main {
                     System.out.println("RATING");
                     double rating = sc.nextDouble();
                     Players players2 = new Players(nickname, rating);
+                    games.get(index).addPlayers(players2);
+                    saveGame(games);
                     ArrayList<Players> players = new ArrayList<>();
                     players.add(players2);
-                    ArrayList games1 = readGame();
-                    //Game game = new Game(games1.get(index).);
+
                 } else {
                     System.out.println("WRONG INDEX");
                 }
 
             } else if (choice == 3) {
-                ArrayList players = readGame();
-                for (int i = 0; i < players.size(); i++) {
-                    System.out.println((i + 1) + ")" + players.get(i).toString());
-                }
+                ArrayList<Game> games = readGame();
+                    for (int i = 0; i < games.size(); i++) {
+                        System.out.println((i + 1) + ")" + games.get(i).toString());
+                    }
             } else if (choice == 0) {
                 System.exit(0);
             }

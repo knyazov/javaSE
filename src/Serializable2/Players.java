@@ -26,4 +26,12 @@ public class Players implements Serializable {
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+    @Override
+    public String toString() {
+        return "Players{" +
+                "nickName='" + nickName + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 }

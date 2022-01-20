@@ -7,15 +7,17 @@ public class Game implements Serializable {
         private String gameName;
         private String ipAddress;
         private int port;
-        ArrayList players = new ArrayList();
+        ArrayList<Players> players = new ArrayList<>();
 
     public Game(String gameName, String ipAddress, int port) {
         this.gameName = gameName;
         this.ipAddress = ipAddress;
         this.port = port;
     }
-
-    public Game(String gameName, String ipAddress, int port, ArrayList players) {
+    public void addPlayers(Players players1){
+        players.add(players1);
+    }
+    public Game(String gameName, String ipAddress, int port, ArrayList<Players> players) {
         this.gameName = gameName;
         this.ipAddress = ipAddress;
         this.port = port;
@@ -55,11 +57,7 @@ public class Game implements Serializable {
     }
 
     @Override
-    public String toString(){
-        return "gameName " + this.gameName + " ip " + this.ipAddress + " PORT " + this.port;
-    }
-
-    public String getGame() {
+    public String toString() {
         return "Game{" +
                 "gameName='" + gameName + '\'' +
                 ", ipAddress='" + ipAddress + '\'' +
