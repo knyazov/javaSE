@@ -19,11 +19,11 @@ public class Main {
         }
     }
 
-    public static ArrayList readGame() {
-        ArrayList games = new ArrayList<>();
+    public static ArrayList<Game> readGame() {
+        ArrayList<Game> games = new ArrayList<>();
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("settings.data"));
-            games = (ArrayList) inputStream.readObject();
+            games = (ArrayList<Game>) inputStream.readObject();
             inputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class Main {
                 System.out.println("PORT: ");
                 int port = sc.nextInt();
                 Game game = new Game(name, ipAddress, port);
-                ArrayList games = readGame();
+                ArrayList<Game> games = readGame();
                 games.add(game);
                 saveGame(games);
             } else if (choice == 2) {
@@ -75,9 +75,16 @@ public class Main {
 
             } else if (choice == 3) {
                 ArrayList<Game> games = readGame();
-                    for (int i = 0; i < games.size(); i++) {
-                        System.out.println((i + 1) + ")" + games.get(i).toString());
-                    }
+                ArrayList<Players> players = new ArrayList<>();
+
+                for (int i = 0; i < games.size(); i++) {
+                    System.out.println((i + 1) + ")" + games.get(i).toString());
+                }
+//                if (games.size() > ){
+//                    System.out.println("One game doesn't has players");
+//                }else {
+//                    System.out.println("Everything is OK");
+//                }
             } else if (choice == 0) {
                 System.exit(0);
             }

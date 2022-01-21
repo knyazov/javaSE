@@ -48,11 +48,11 @@ public class Game implements Serializable {
         this.port = port;
     }
 
-    public ArrayList getPlayers() {
+    public ArrayList<Players> getPlayers() {
         return players;
     }
 
-    public void setPlayers(ArrayList players) {
+    public void setPlayers(ArrayList<Players> players) {
         this.players = players;
     }
 
