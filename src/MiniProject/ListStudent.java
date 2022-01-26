@@ -22,6 +22,7 @@ public class ListStudent extends Container {
     public ListStudent() {
         DBManager db = new DBManager();
         db.connect();
+        System.out.println("ListStudent is connected");
         setSize(500, 500);
         setLayout(null);
 
@@ -29,41 +30,15 @@ public class ListStudent extends Container {
         table.setFont(new Font("Calibri", Font.PLAIN, 12));
         table.setRowHeight(30);
 
-        //Создаем панель для прокрутки
         scrollPane = new JScrollPane(table);
         scrollPane.setSize(300, 200);
         scrollPane.setLocation(100, 200);
         add(scrollPane);
-        ArrayList<Students> students = db.getAllStudents();
-
-
-//        label = new JLabel("NAME: ");
-//        label.setSize(70, 30);
-//        label.setLocation(100, 100);
-//        add(label);
-//
-//        label = new JLabel("SURNAME: ");
-//        label.setSize(70, 30);
-//        label.setLocation(200, 100);
-//        add(label);
-//
-//
-//        label = new JLabel("AGE: ");
-//        label.setSize(70, 30);
-//        label.setLocation(300, 100);
-//        add(label);
-//
-//        area = new JTextArea();
-//        area.setSize(300, 100);
-//        area.setLocation(100, 200);
-//        add(area);
 
         back = new JButton("BACK");
         back.setSize(100, 30);
-        back.setLocation(100, 350);
+        back.setLocation(100, 50);
         add(back);
-
-        Students s = new Students();
 
         back.addActionListener(new ActionListener() {
             @Override
@@ -71,47 +46,6 @@ public class ListStudent extends Container {
                 Main.mainFrame.showMenu();
             }
         });
-
-
-//        try {
-//            statement = connect.createStatement();
-//            ResultSet rs = statement.executeQuery("SELECT * FROM `" + jComboBox2.getSelectedItem() + "`;");
-//
-//            // get columns info
-//            ResultSetMetaData rsmd = rs.getMetaData();
-//            int columnCount = rsmd.getColumnCount();
-//
-//            // for changing column and row model
-//            DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
-//
-//            // clear existing columns
-//            tm.setColumnCount(0);
-//
-//            // add specified columns to table
-//            for (int i = 1; i <= columnCount; i++ ) {
-//                tm.addColumn(rsmd.getColumnName(i));
-//            }
-//
-//            // clear existing rows
-//            tm.setRowCount(0);
-//
-//            // add rows to table
-//            while (rs.next()) {
-//                String[] a = new String[columnCount];
-//                for(int i = 0; i < columnCount; i++) {
-//                    a[i] = rs.getString(i+1);
-//                }
-//                tm.addRow(a);
-//            }
-//            tm.fireTableDataChanged();
-//
-//            // Close ResultSet and Statement
-//            rs.close();
-//            statement.close();
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, ex, ex.getMessage(), WIDTH, null);
-//        }
-
     }
 
     public void generateTable(ArrayList<Students> students) {
@@ -122,7 +56,6 @@ public class ListStudent extends Container {
             data[i][1] = students.get(i).getName();
             data[i][2] = students.get(i).getSurname();
             data[i][3] = students.get(i).getAge();
-
         }
 
         DefaultTableModel model = new DefaultTableModel(data, header);

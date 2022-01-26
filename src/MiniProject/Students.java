@@ -1,8 +1,9 @@
 package MiniProject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Students {
+public class Students implements Serializable {
 
     private Long id;
     private String name;

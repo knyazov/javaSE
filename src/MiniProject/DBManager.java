@@ -19,7 +19,7 @@ public class DBManager {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/jdbc_sample?useUnicode=true&serverTimezone=UTC", "root", ""
             );
-            System.out.println("CONNECTED");
+            System.out.println("CONNECTED DB");
         } catch (Exception e) {
             e.printStackTrace();
         }

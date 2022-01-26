@@ -8,7 +8,6 @@ public class MainFrame extends JFrame {
     protected MainMenu menu;
     protected AddStudent addStudent;
     protected ListStudent listStudent;
-    DBManager db = new DBManager();
     public MainFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Bitlab Application");

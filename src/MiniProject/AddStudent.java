@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 public class AddStudent extends Container {
     JLabel label;
@@ -15,8 +18,7 @@ public class AddStudent extends Container {
     public AddStudent() {
         DBManager db = new DBManager();
         db.connect();
-
-
+        System.out.println("AddStudent is connected");
         setSize(500, 500);
         setLayout(null);
 
@@ -67,7 +69,6 @@ public class AddStudent extends Container {
                 Main.mainFrame.showMenu();
             }
         });
-        int index = 0;
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,8 +77,17 @@ public class AddStudent extends Container {
                 students.setSurname(tf2.getText());
                 students.setAge(Integer.parseInt(tf3.getText()));
                 if (!tf1.equals("") && !tf2.equals("") && !tf3.equals("")) {
-                    Students students1 = new Students(null, tf1.getText(),tf2.getText(),Integer.parseInt(tf3.getText()));
-                    db.addStudents(students1);
+                    try{
+                        Socket socket = new Socket("localhost", 8696);
+                        Students students1 = new Students(null, tf1.getText(),tf2.getText(),Integer.parseInt(tf3.getText()));
+                        PackageData pd = new PackageData("add", students1);
+                        //db.addStudents(students1);
+                        ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+                        outputStream.writeObject(pd);
+                    }catch (Exception exception){
+                        exception.printStackTrace();
+                    }
+
                     tf1.setText("");
                     tf2.setText("");
                     tf3.setText("");
